@@ -9,21 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var app_people_component_1 = require('./app.people.component');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'Hello World';
+var mocks_1 = require('./models/mocks');
+var PeopleComponent = (function () {
+    function PeopleComponent() {
     }
-    AppComponent = __decorate([
+    PeopleComponent.prototype.ngOnInit = function () {
+        this.people = mocks_1.PEOPLE;
+    };
+    PeopleComponent.prototype.totalSalary = function () {
+        var sum = 0;
+        for (var _i = 0, _a = this.people; _i < _a.length; _i++) {
+            var person = _a[_i];
+            sum += person.income;
+        }
+        return sum;
+    };
+    PeopleComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            templateUrl: 'app/app.component.html',
-            directives: [app_people_component_1.PeopleComponent],
-            styleUrls: ['app/app.component.css']
+            selector: 'people',
+            templateUrl: 'app/app.people.component.html',
+            styleUrls: ['app/app.people.component.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], PeopleComponent);
+    return PeopleComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.PeopleComponent = PeopleComponent;
+//# sourceMappingURL=app.people.component.js.map
