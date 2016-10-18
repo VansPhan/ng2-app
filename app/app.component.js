@@ -12,16 +12,36 @@ var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Hello World';
-        this.test = {
-            "Van": "Phan",
-            "Bobby": "Scar",
-            "West": "Balls"
-        };
+        this.people = [
+            {
+                'name': 'Van',
+                'age': 22,
+                'income': 85000
+            },
+            {
+                'name': 'Weston',
+                'age': 24,
+                'income': 97000
+            },
+            {
+                'name': 'Johnny',
+                'age': 26,
+                'income': 105000
+            }
+        ];
     }
+    AppComponent.prototype.totalSalary = function () {
+        var sum = 0;
+        for (var _i = 0, _a = this.people; _i < _a.length; _i++) {
+            var person = _a[_i];
+            sum += person.income;
+        }
+        return sum;
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "<h1>{{ title }}</h1>\n  \t<h2>{{ test.Van }}</h2>\n  \t<h2>{{ test.Bobby }}</h2>\n  \t<h2>{{ test.West }}</h2>"
+            template: "<h1>{{ title }}</h1>\n  \t<p>Total combined salary: {{ totalSalary() | currency: 'USD':true }}</p>\n  \t<ul>\n  \t\t<li *ngFor=\"let person of people\">\n  \t\t\t<h2>Name: {{ person.name | uppercase }}</h2>\n  \t\t\t<h2 *ngIf=\"person.age > 22\">Age: {{ person.age }}</h2>\n  \t\t\t<h2 *ngIf=\"person.age <= 22\">Age: {{ person.age }} (This person is underage)</h2>\n  \t\t\t<h2 *ngIf=\"person.income <= 100000\">Income: {{ person.income | currency:'USD':true }}</h2>\n  \t\t\t<h2 *ngIf=\"person.income > 100000\">Income: {{ person.income | currency:'USD':true }} (6 Figures $_$)</h2>\n  \t\t</li>\n  \t</ul>"
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
